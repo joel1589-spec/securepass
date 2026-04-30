@@ -24,7 +24,7 @@ FEDAPAY_SECRET_KEY = os.getenv("FEDAPAY_SECRET_KEY", "")
 FEDAPAY_WEBHOOK_SECRET = os.getenv("FEDAPAY_WEBHOOK_SECRET", "")
 FEDAPAY_ENVIRONMENT = os.getenv("FEDAPAY_ENVIRONMENT") or os.getenv("FEDAPAY_ENV", "sandbox")
 FEDAPAY_ENVIRONMENT = FEDAPAY_ENVIRONMENT.lower()
-APP_BASE_URL = os.getenv("APP_BASE_URL", "http://127.0.0.1:5000").rstrip("/")
+APP_BASE_URL = os.getenv("APP_BASE_URL", "https://securepass-hzaa.onrender.com").rstrip("/")
 SUPPORT_EMAIL = os.getenv("SUPPORT_EMAIL", "joelkpeto204@gmail.com")
 SUPPORT_PHONE = os.getenv("SUPPORT_PHONE", "99424087")
 APP_VERSION = "52"
@@ -309,7 +309,7 @@ def headers(resp):
     resp.headers['Permissions-Policy'] = 'camera=(), microphone=(), geolocation=()'
     resp.headers['X-XSS-Protection'] = '1; mode=block'
     # CSP volontairement compatible avec l'application single-page locale
-    resp.headers['Content-Security-Policy'] = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' http://127.0.0.1:5000 https:"
+    resp.headers['Content-Security-Policy'] = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://securepass-hzaa.onrender.com https:"
     return resp
 
 @app.route('/')
