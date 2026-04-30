@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SecurePass Admin Console</title>
+  <link rel="stylesheet" href="/static/style.css?v=52">
+</head>
+<body>
+<div id="toast-root"></div>
+
+<section id="adminLogin" class="auth-shell">
+  <div class="auth-card pro-auth">
+    <div class="brand-row big"><div class="logo">S</div><div><h1>SecurePass Admin</h1><p>Console grand administrateur</p></div></div>
+    <p class="muted">Accès réservé au compte super_admin unique.</p>
+    <input id="adminIdentifier" autocomplete="username" placeholder="Username ou email admin">
+    <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Mot de passe">
+    <input id="adminOtp" autocomplete="one-time-code" placeholder="Code 2FA si demandé">
+    <button onclick="adminLogin()">Se connecter</button>
+    <p class="warning-text">Sécurité : 2FA obligatoire pour consulter les données admin.</p>
+  </div>
+</section>
+
+<section id="adminApp" class="app-layout hidden">
+  <aside class="sidebar">
+    <div class="brand-row"><div class="logo">S</div><span>Admin Console</span></div>
+    <nav>
+      <button onclick="loadStats()">Vue globale</button>
+      <button onclick="loadUsers()">Utilisateurs</button>
+      <button onclick="loadPayments()">Paiements</button>
+      <button onclick="loadOrganizations()">Entreprises</button>
+      <button onclick="loadLogs()">Logs sécurité</button>
+    </nav>
+    <button class="logout" onclick="adminLogout()">Déconnexion</button>
+  </aside>
+  <main>
+    <header class="topbar"><div><h2>Grand admin SecurePass</h2><p id="adminWho" class="muted"></p></div><span class="pill success">super_admin unique</span></header>
+    <div id="adminContent" class="grid"></div>
+  </main>
+</section>
+<script src="/static/admin.js?v=52"></script>
+</body>
+</html>

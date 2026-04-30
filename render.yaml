@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: securepass
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FEDAPAY_ENV
+        value: sandbox
+      - key: SUPPORT_EMAIL
+        value: joelkpeto204@gmail.com
+      - key: SUPPORT_PHONE
+        value: "99424087"

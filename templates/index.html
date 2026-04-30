@@ -1,0 +1,60 @@
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SecurePass — SaaS sécurité des mots de passe</title>
+<link rel="stylesheet" href="/static/style.css?v=52">
+</head><body>
+<div id="toast-root"></div>
+<section id="authScreen" class="auth-page">
+  <div class="auth-left">
+    <div class="brand-row"><img class="brand-logo-img" src="/static/logo.svg" alt="SecurePass"><span>SecurePass</span></div>
+    <h1>Protégez vos comptes avec une sécurité de niveau professionnel.</h1>
+    <p>Générez, auditez, stockez et partagez vos mots de passe dans un coffre chiffré avec 2FA obligatoire.</p>
+    <div class="trust-grid">
+      <div>🔐 Coffre chiffré</div><div>📱 Mobile Money</div><div>🧩 Extension navigateur</div><div>🏢 Mode Enterprise</div><div>📞 99424087</div><div>✉️ joelkpeto204@gmail.com</div>
+    </div>
+  </div>
+  <div class="auth-card">
+    <div class="tabs"><button id="loginTab" class="active" onclick="showAuth('login')">Connexion</button><button id="registerTab" onclick="showAuth('register')">Inscription</button></div>
+    <form id="loginForm" onsubmit="login(event)">
+      <h2>Bon retour 👋</h2><p class="muted">Connecte-toi pour accéder au dashboard.</p>
+      <label>Email ou nom d'utilisateur</label><input id="loginIdentifier" autocomplete="username" placeholder="exemple@gmail.com">
+      <label>Mot de passe</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Votre mot de passe">
+      <div id="otpBox" class="hidden"><label>Code 2FA</label><input id="loginOtp" placeholder="123456"></div>
+      <button class="primary full" type="submit">Se connecter</button>
+      <p class="switch">Pas encore de compte ? <a onclick="showAuth('register')">Créer un compte</a></p>
+    </form>
+    <form id="registerForm" class="hidden" onsubmit="register(event)">
+      <h2>Créer un compte</h2><p class="muted">Commence gratuitement. 2FA obligatoire après connexion.</p>
+      <label>Nom d'utilisateur</label><input id="regUsername" autocomplete="username" placeholder="nom">
+      <label>Email</label><input id="regEmail" type="email" autocomplete="email" placeholder="exemple@gmail.com">
+      <label>Mot de passe</label><input id="regPassword" type="password" autocomplete="new-password" placeholder="Minimum 8 caractères">
+      <button class="primary full" type="submit">Créer mon compte</button>
+      <p class="switch">Déjà un compte ? <a onclick="showAuth('login')">Se connecter</a></p>
+    </form>
+  </div>
+</section>
+
+<section id="twofaGate" class="hidden gate-page">
+  <div class="gate-card">
+    <div class="logo big">S</div><h2>Double authentification obligatoire</h2>
+    <p class="muted">Active la 2FA avant d’utiliser SecurePass. Scanne le QR Code avec Google Authenticator ou Microsoft Authenticator.</p>
+    <button class="primary" onclick="setup2FA()">Générer le QR Code</button>
+    <div id="qrArea" class="qr-area"></div>
+    <input id="twofaCode" placeholder="Code 2FA à 6 chiffres">
+    <button class="primary full" onclick="enable2FA()">Activer la 2FA</button>
+    <button class="ghost full" onclick="logout()">Déconnexion</button>
+  </div>
+</section>
+
+<section id="appScreen" class="hidden app-layout">
+  <aside class="sidebar">
+    <div class="brand-row"><img class="brand-logo-img" src="/static/logo.svg" alt="SecurePass"><span>SecurePass</span></div>
+    <nav>
+      <button onclick="view('dashboard')">Dashboard</button><button onclick="view('generator')">Générateur</button><button onclick="view('vault')">Coffre</button><button data-billing-nav onclick="view('billing')">Abonnement</button><button onclick="view('enterprise')">Enterprise</button><button onclick="view('settings')">Paramètres</button>
+    </nav>
+    <button class="logout" onclick="logout()">Déconnexion</button>
+  </aside>
+  <main><header class="topbar"><div><h2 id="pageTitle">Dashboard</h2><p id="userLine" class="muted"></p></div><span id="planPill" class="pill">Free</span></header><div id="content"></div></main>
+</section>
+<script src="/static/app.js?v=52"></script>
+</body></html>

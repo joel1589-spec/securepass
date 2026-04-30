@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "SecurePass Assistant",
+  "version": "1.0.48",
+  "description": "Suggestion, détection et sauvegarde automatique de mots de passe faibles SecurePass pour les comptes Pro et Enterprise.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["http://127.0.0.1:5000/*", "http://localhost:5000/*", "<all_urls>"],
+  "action": {"default_popup": "popup.html"},
+  "background": {"service_worker": "background.js"},
+  "content_scripts": [{"matches": ["<all_urls>"], "js": ["content.js"], "run_at": "document_idle"}]
+}
